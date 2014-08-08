@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20140806164240) do
 
   create_table "concerts", force: true do |t|
-    t.string   "name"
+    t.string   "title"
     t.datetime "open_at"
     t.datetime "start_at"
     t.datetime "end_at"
     t.string   "place"
-    t.string   "note"
+    t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
