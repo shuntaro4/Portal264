@@ -4,7 +4,6 @@ class CreateConcerts < ActiveRecord::Migration
       t.string :title
       t.datetime :open_at
       t.datetime :start_at
-      t.datetime :end_at
       t.string :place
       t.text :note
 

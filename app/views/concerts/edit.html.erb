@@ -1,4 +1,4 @@
-<%= form_for @concert, html: { class: "form-horizontal" }, role: "form", url: concerts_new_path do |f| %>
+<%= form_for @concert, html: { class: "form-horizontal" }, role: "form", url: concerts_update_path do |f| %>
     <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control" %>

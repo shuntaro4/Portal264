@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     get    "concerts/:id",      to: "concerts#show",   as: "concerts_show"
     get    "concerts/:id/edit", to: "concerts#edit",   as: "concerts_edit"
     post   "concerts/new",      to: "concerts#create", as: "concerts_create"
+    post   "concerts/:id",      to: "concerts#update", as: "concerts_update"
     delete "concerts/:id",      to: "concerts#delete", as: "concerts_destroy"
 end

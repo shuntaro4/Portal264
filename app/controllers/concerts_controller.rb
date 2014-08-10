@@ -1,24 +1,37 @@
 class ConcertsController < ApplicationController
 
     def index
-        @title    = 'Concert'
+        @title    = 'コンサート一覧'
         @concerts = Concert.all
     end
 
     def new
-        @title   = 'Concert New'
+        @title   = 'コンサート新規登録'
         @concert = Concert.new
     end
 
     def show
+        @title   = 'コンサート詳細'
+        @concert = Concert.find(params[:id])
     end
 
     def create
         @concert = Concert.new(concert_params)
         if @concert.save
-            redirect_to concerts_index_path, flash: { success: 'コンサート情報が登録されました。' }
+           redirect_to concerts_index_path, flash: { success: 'コンサート情報が登録されました。' }
         else
-            render :new, flash: { error: 'コンサート情報の登録に失敗しました。' }
+            render :new
+        end
+    end
+
+    def update
+    end
+
+    def destroy
+        if Concert.delete(params[:id])
+            redirect_to :concert_index, flash: { success: 'コンサート情報が削除されました。' }
+        else
+            render :index
         end
     end
 
