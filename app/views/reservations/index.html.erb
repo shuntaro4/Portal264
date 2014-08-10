@@ -1,0 +1,36 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th><%= Reservation.human_attribute_name(:concert) %></th>
+            <th><%= Reservation.human_attribute_name(:name) %></th>
+            <th><%= Reservation.human_attribute_name(:mail) %></th>
+            <th><%= Reservation.human_attribute_name(:ticket) %></th>
+            <th><%=t ".actions", default: t("helpers.actions") %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @reservations.each do |r| %>
+        <tr>
+            <td><%= r.concert.title %></td>
+            <td><%= r.name %></td>
+            <td><%= r.mail %></td>
+            <td><%= r.ticket %></td>
+            <td>
+                <div class="btn-group">
+                    <%= link_to reservations_show_path(concert_id: r.concert_id, id: r.id), class: 'btn btn-xs' do %>
+                        <%= glyph "info-sign" %>
+                    <% end %>
+                    <%= link_to reservations_edit_path(concert_id: r.concert_id, id: r.id), class: 'btn btn-xs' do %>
+                        <%= glyph 'pencil' %>
+                    <% end %>
+                    <%= link_to reservations_destroy_path(concert_id: r.concert_id, id: r.id), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-xs' do %>
+                        <%= glyph 'remove' %>
+                    <% end %>
+                </div>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to t(".new"), :reservations_new, class: "btn btn-primary" %>

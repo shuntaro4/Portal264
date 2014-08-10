@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140806164240) do
   end
 
   create_table "reservations", force: true do |t|
+    t.integer  "concert_id"
     t.string   "name"
     t.string   "mail"
     t.integer  "ticket"
