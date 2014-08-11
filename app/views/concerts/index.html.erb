@@ -22,15 +22,20 @@
                     <%= link_to concerts_show_path(c), class: 'btn btn-xs' do %>
                         <%= glyph "info-sign" %> 詳細
                     <% end %>
-                    <%= link_to concerts_show_path(c), class: 'btn btn-xs' do %>
-                        <%= glyph "time" %> 予約
-                    <% end %>
                     <% if login? %>
                         <%= link_to concerts_edit_path(c), class: 'btn btn-xs' do %>
                             <%= glyph 'pencil' %>
                         <% end %>
-                        <%= link_to concerts_destroy_path(c), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-xs' do %>
+                        <%= link_to concerts_destroy_path(c), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'コンサート情報を削除します。よろしいですか？')) }, class: 'btn btn-xs' do %>
                             <%= glyph 'remove' %>
+                        <% end %>
+                    <% end %>
+                    <%= link_to reservations_new_path(c), class: 'btn btn-xs' do %>
+                        <%= glyph "time" %> 予約
+                    <% end %>
+                    <% if login? %>
+                        <%= link_to reservations_index_path(concert_id: c.id), class: 'btn btn-xs' do %>
+                            <%= glyph "list" %>
                         <% end %>
                     <% end %>
                 </div>
@@ -43,3 +48,4 @@
 <% if login? %>
 <%= link_to t(".new"), :concerts_new, class: "btn btn-primary" %>
 <% end %>
+<%= render "layouts/footer" %>

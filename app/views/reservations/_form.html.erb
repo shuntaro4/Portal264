@@ -1,0 +1,31 @@
+<%= form_for @reservation, html: { class: "form-horizontal" }, role: "form", url: @url do |f| %>
+    <% if @reservation.errors.any? %>
+        <div class="alert alert-danger">
+            <ul>
+            <% @reservation.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :concert_id %>
+
+    <div class="form-group">
+        ライブ名：<%= @reservation.concert.title %>
+    </div>
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="form-group">
+        <%= f.label :mail %>
+        <%= f.text_field :mail %>
+    </div>
+    <div class="form-group">
+        <%= f.label :ticket %>
+        <%= f.text_field :ticket %>
+    </div>
+    <%= f.submit class: 'btn btn-primary' %>
+<% end %>
