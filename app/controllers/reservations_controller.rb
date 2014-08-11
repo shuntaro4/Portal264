@@ -5,21 +5,27 @@ class ReservationsController < ApplicationController
     end
 
     def new
-        @title        = "予約新規登録"
+        @title        = "チケット予約フォーム"
         @url          = reservations_create_path(concert_id: params[:concert_id])
         @reservation  = Reservation.new(concert_id: params[:concert_id])
     end
 
     def edit
-        @title        = "予約修正"
-        @url          = reservations_update_path(concert_id: params[:concert_id])
-        @reservation  = Reservation.find(params[:id])
+        if Reservation.exists?(id: params[:id])
+            @title        = "予約修正"
+            @url          = reservations_update_path(concert_id: params[:concert_id])
+            @reservation  = Reservation.where("id = ?", params[:id]).first
+        else
+            redirect_to concert_index_path, flash: { danger: "予約情報がありません。" }
+        end
     end
 
     def show
+        redirect_to concert_index_path
     end
 
     def create
+        @title        = "チケット予約フォーム"
         @url          = reservations_create_path(concert_id: params[:concert_id])
         @reservation  = Reservation.new(reservation_params)
         if @reservation.save
@@ -30,12 +36,17 @@ class ReservationsController < ApplicationController
     end
 
     def update
-        @url          = reservations_update_path(concert_id: params[:concert_id])
-        @reservation  = Reservation.find(params[:id])
-        if @reservation.update_attributes(reservation_params)
-            redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { success: '予約情報が更新されました。' }
+        if Reservation.exists?(id: params[:id])
+            @title        = "予約修正"
+            @url          = reservations_update_path(concert_id: params[:concert_id])
+            @reservation  = Reservation.find(params[:id])
+            if @reservation.update_attributes(reservation_params)
+                redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { success: '予約情報が更新されました。' }
+            else
+                render :edit
+            end
         else
-            render :edit
+            redirect_to concert_index_path, flash: { danger: "予約情報がありません。" }
         end
     end
 
@@ -54,4 +65,5 @@ class ReservationsController < ApplicationController
             :concert_id, :name, :mail, :ticket
         )
     end
+
 end

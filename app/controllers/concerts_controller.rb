@@ -1,5 +1,4 @@
 class ConcertsController < ApplicationController
-
     def index
         @title    = 'コンサート一覧'
         @concerts = Concert.all
@@ -12,14 +11,22 @@ class ConcertsController < ApplicationController
     end
 
     def edit
-        @title    = 'コンサート修正'
-        @url      = concerts_update_path
-        @concert  = Concert.where("id = ?", params[:id]).first
+        if Concert.exists?(id: params[:id])
+            @title    = 'コンサート修正'
+            @url      = concerts_update_path
+            @concert  = Concert.where("id = ?", params[:id]).first
+        else
+            redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
+        end
     end
 
     def show
-        @title    = 'コンサート詳細'
-        @concert  = Concert.where("id = ?", params[:id]).first
+        if Concert.exists?(id: params[:id])
+            @title    = 'コンサート詳細'
+            @concert  = Concert.where("id = ?", params[:id]).first
+        else
+            redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
+        end
     end
 
     def create
@@ -32,13 +39,23 @@ class ConcertsController < ApplicationController
     end
 
     def update
+        if Concert.exists?(id: params[:id])
+            @concert = Concert.where("id = ?", params[:id]).first
+            if @concert.update_attributes(concert_params)
+                redirect_to concerts_index_path, flash: { success: 'コンサート情報が更新されました。' }
+            else
+                render :edit
+            end
+        else
+            redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
+        end
     end
 
     def destroy
         if Concert.delete(params[:id])
-            redirect_to :concert_index, flash: { success: 'コンサート情報が削除されました。' }
+            redirect_to concerts_index_path, flash: { success: 'コンサート情報が削除されました。' }
         else
-            render :index
+            redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
         end
     end
 
@@ -49,5 +66,4 @@ class ConcertsController < ApplicationController
             :title, :open_at, :start_at, :end_at, :place, :free, :note
         )
     end
-
 end

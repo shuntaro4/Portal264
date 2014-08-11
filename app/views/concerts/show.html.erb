@@ -4,8 +4,7 @@
         <dd><pre class="prettyprint"><%= @concert.title %></pre></dd>
         <dt class="label label-info">開催日</dt>
         <dd>
-            <pre class="prettyprint"><%= @concert.start_at.strftime("%Y-%m-%d") %></pre>
-            <pre class="prettyprint">開場：<%= @concert.open_at.strftime("%H:%M") %> 開演：<%= @concert.start_at.strftime("%H:%M") %></pre>
+            <pre class="prettyprint"><%= @concert.start_at.strftime("%Y-%m-%d(%a)") %> OPEN：<%= @concert.open_at.strftime("%H:%M〜") %> START：<%= @concert.start_at.strftime("%H:%M〜") %></pre>
         </dd>
         <dt class="label label-info">場所</dt>
         <dd><pre class="prettyprint"><%= @concert.place %></pre></dd>
