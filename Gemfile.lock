@@ -28,8 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    bootstrap-sass (2.3.2.0)
-      sass (~> 3.2)
+    bcrypt-ruby (3.1.2)
     builder (3.2.2)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -51,8 +50,6 @@ GEM
     erubis (2.7.0)
     execjs (2.2.1)
     ffi (1.9.3)
-    font-awesome-rails (4.1.0.0)
-      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     hirb (0.7.2)
     hirb-unicode (0.0.5)
@@ -177,10 +174,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (= 2.3.2.0)
+  bcrypt-ruby (= 3.1.2)
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
-  font-awesome-rails
   hirb
   hirb-unicode
   jbuilder (~> 2.0)
