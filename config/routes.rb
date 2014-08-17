@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     post   "concerts/:concert_id/reservations/new",      to: "reservations#create",  as: "reservations_create"
     patch  "concerts/:concert_id/reservations/:id/edit", to: "reservations#update",  as: "reservations_update"
     delete "concerts/:concert_id/reservations/:id",      to: "reservations#destroy", as: "reservations_destroy"
+    get    "signin",                                     to: "sessions#new",         as: "signin"
+    post   "sessions",                                   to: "sessions#create",      as: "sessions"
+    delete "signout",                                    to: "sessions#destroy",     as: "signout"
 end
