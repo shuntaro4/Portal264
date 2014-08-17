@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+    before_action :signed_in_admin, only: [:index, :edit, :show, :update, :destroy]
+
     def index
         @title        = "予約一覧"
         @reservations = Reservation.where("concert_id = ?", params[:concert_id])

@@ -1,4 +1,6 @@
 class ConcertsController < ApplicationController
+    before_action :signed_in_admin, only: [:new, :edit, :create, :update, :destroy]
+
     def index
         @title    = 'コンサート一覧'
         @concerts = Concert.all

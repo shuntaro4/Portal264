@@ -20,6 +20,12 @@ module SessionsHelper
         @current_user ||= Admin.find_by(remember_token: remember_token)
     end
 
+    def signed_in_admin
+        unless signed_in?
+            redirect_to root_path
+        end
+    end
+
     def sign_out
         self.current_user = nil
         cookies.delete(:remember_token)
