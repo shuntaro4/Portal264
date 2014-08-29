@@ -7,7 +7,7 @@ ja:
             concert:
                 date: 日付
                 title: タイトル
-                open_at: 会場時間
+                open_at: 開場時間
                 start_at: 開演時間
                 place: 開催場所
                 note: 備考
