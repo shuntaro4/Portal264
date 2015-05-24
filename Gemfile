@@ -12,17 +12,18 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'bcrypt-ruby', '3.1.2'
+gem 'seed-fu', '~> 2.3'
 
 group :doc do
-    gem 'sdoc', '~> 0.4.0'
+  gem 'sdoc', '~> 0.4.0'
 end
 
 group :development, :test do
-    gem 'sqlite3', '1.3.8'
-    gem 'spring'
-    gem 'rspec-rails', '2.13.1'
-    gem 'hirb'
-    gem 'hirb-unicode'
+  gem 'sqlite3', '1.3.8'
+  gem 'spring'
+  gem 'rspec-rails', '2.13.1'
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
 
 group :test do
@@ -31,6 +32,6 @@ group :test do
 end
 
 group :production do
-    gem 'pg', '0.15.1'
-    gem 'rails_12factor', '0.0.2'
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor', '0.0.2'
 end
