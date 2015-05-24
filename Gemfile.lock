@@ -47,6 +47,9 @@ GEM
     coffee-script-source (1.7.1)
     commonjs (0.2.7)
     diff-lcs (1.2.5)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     erubis (2.7.0)
     execjs (2.2.1)
     ffi (1.9.3)
@@ -180,6 +183,7 @@ DEPENDENCIES
   bcrypt-ruby (= 3.1.2)
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   hirb
   hirb-unicode
   jbuilder (~> 2.0)
