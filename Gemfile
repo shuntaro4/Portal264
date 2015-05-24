@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 #ruby '2.1.1'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 4.0.3'
 gem 'less-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'turbolinks', '2.2.3'
 gem 'jbuilder', '~> 2.0'
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 gem 'bcrypt-ruby', '3.1.2'
