@@ -51,18 +51,23 @@
               <li><%= link_to "HOME",    root_path  %></li>
               <li><%= link_to "CONCERT", concerts_index_path %></li>
             </ul>
-            <% if signed_in? %>
               <ul class="nav pull-right">
-                <li><%= link_to "管理者", root_path %></li>
-                <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+                <% if signed_in? %>
+                  <li><%= link_to "SIGN OUT", signout_path, method: "delete" %></li>
+                <% else %>
+                  <li><%= link_to "SIGN IN", signin_path %></li>
+                <% end %>
               </ul>
-            <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
     <div class="container">
+      <% if signed_in? %>
+      <p style="text-align:right;color:red"><strong>管理者</strong></p>
+      <hr>
+      <% end %>
       <h3><%= @title %></h3>
       <%= bootstrap_flash %>
       <% flash.each do |type, msg| %>
