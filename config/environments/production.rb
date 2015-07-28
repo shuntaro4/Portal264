@@ -90,6 +90,7 @@ Rails.application.configure do
     :domain                 => 'smtp.gmail.com',
     :authentication         => 'plain',
     :user_name              => ENV['MAIL_ADDRESS'],
-    :password               => ENV['MAIL_PASSWORD']
+    :password               => ENV['MAIL_PASSWORD'],
+    :password               => ENV['MAIL_PASSWORD2']
   }
 end
