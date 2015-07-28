@@ -30,8 +30,10 @@
                             <%= glyph 'remove' %>
                         <% end %>
                     <% end %>
+                    <% if c.active %>
                     <%= link_to reservations_new_path(c), class: 'btn btn-xs' do %>
                         <%= glyph "time" %> 予約
+                    <% end %>
                     <% end %>
                     <% if signed_in? %>
                         <%= link_to reservations_index_path(concert_id: c.id), class: 'btn btn-xs' do %>

@@ -10,6 +10,9 @@ class ReservationsController < ApplicationController
         @title        = "チケット予約フォーム"
         @url          = reservations_create_path(concert_id: params[:concert_id])
         @reservation  = Reservation.new(concert_id: params[:concert_id])
+        if @reservation.concert.nil? or !@reservation.concert.active
+            redirect_to concerts_index_path
+        end
     end
 
     def edit
