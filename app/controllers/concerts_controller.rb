@@ -3,11 +3,7 @@ class ConcertsController < ApplicationController
 
     def index
         @title    = 'コンサート一覧'
-        if signed_in?
-            @concerts = Concert.all.order(open_at: :desc)
-        else
-            @concerts = Concert.where(active: true).all.order(open_at: :desc)
-        end
+        @concerts = Concert.all.order(open_at: :desc)
     end
 
     def new
