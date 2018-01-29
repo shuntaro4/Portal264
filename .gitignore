@@ -17,3 +17,5 @@
 
 # Ignore dotenv file.
 .env
+
+/vendor/bundle
