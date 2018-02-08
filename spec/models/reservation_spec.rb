@@ -5,7 +5,7 @@ RSpec.describe Reservation, type: :model do
     context "when that is nil" do
       it "is invalid." do
         m = FactoryBot.build(:reservation, concert: nil)
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
   end
@@ -14,7 +14,7 @@ RSpec.describe Reservation, type: :model do
     context "when that is nil" do
       it "is invalid." do
         m = FactoryBot.build(:reservation, name: nil)
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
     context "when length is 30" do
@@ -26,7 +26,7 @@ RSpec.describe Reservation, type: :model do
     context "when length is 31" do
       it "is invalid." do
         m = FactoryBot.build(:reservation, name: "a" * 31)
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe Reservation, type: :model do
     context "when that is nil" do
       it "is invalid." do
         m = FactoryBot.build(:reservation, mail: nil)
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
     context "when length is 50" do
@@ -47,13 +47,13 @@ RSpec.describe Reservation, type: :model do
     context "when length is 51" do
       it "is invalid." do
         m = FactoryBot.build(:reservation, mail: "a" * 38 + "@testmail.com")
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
     context "when format is wrong" do
       it "is invalid" do
         m = FactoryBot.build(:reservation, mail: "wrong format mail")
-        expect(m).not_to be_valid
+        expect(m).to be_invalid
       end
     end
   end
