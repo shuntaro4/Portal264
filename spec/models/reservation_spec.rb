@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Reservation, type: :model do
+  it "is invalid." do
+    m = FactoryBot.build(:reservation)
+    expect(m).to be_valid
+  end
+
   describe "#concert" do
     context "when that is nil" do
       it "is invalid." do
