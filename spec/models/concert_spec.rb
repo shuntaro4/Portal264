@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Concert, type: :model do
-  it "is valid with a title" do
+  it "is valid." do
     m = FactoryBot.build(:concert)
     expect(m).to be_valid
   end
-  it "is invalid without a title" do
-    m = FactoryBot.build(:concert, title:'')
-    expect(m).not_to be_valid
+
+  describe "#title" do
+    context "when that is nil" do
+      it "is invalid" do
+        m = FactoryBot.build(:concert, title: nil)
+        expect(m).to be_invalid
+      end
+    end
   end
 end
