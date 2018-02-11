@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ConcertsController, type: :controller do
+  let(:concert) { FactoryBot.create(:concert) }
+
   describe "GET index" do
     it "has a 200 status code." do
       get :index
@@ -22,7 +24,6 @@ RSpec.describe ConcertsController, type: :controller do
   end
 
   describe "GET show" do
-    let(:concert) { FactoryBot.create(:concert) }
     context "when concert id is exists" do
       it "has a 200 status code." do
         get :show, id: concert.id
