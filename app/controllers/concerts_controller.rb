@@ -34,7 +34,7 @@ class ConcertsController < ApplicationController
     def create
         @concert  = Concert.new(concert_params)
         if @concert.save
-           redirect_to concerts_index_path, flash: { success: 'コンサート情報が登録されました。' }
+            redirect_to concerts_index_path, flash: { success: 'コンサート情報が登録されました。' }
         else
             render :new
         end
