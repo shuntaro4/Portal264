@@ -87,4 +87,52 @@ RSpec.describe ConcertsController, type: :controller do
       end
     end
   end
+
+  describe "GET edit" do
+    context "when you are signed in" do
+      before do
+        sign_in admin
+      end
+      context "when concert id is exists" do
+        before do
+          get :edit, id: concert.id
+        end
+        it "has a 200 status code." do
+          expect(response.status).to eq(200)
+        end
+        it "assigns @title." do
+          expect(assigns(:title)).to eq("コンサート修正")
+        end
+        it "assigns @url." do
+          expect(assigns(:url)).to eq(concerts_update_path)
+        end
+        it "assigns @concert." do
+          expect(assigns(:concert)).to eq(concert)
+        end
+        it "reders the edit template." do
+          expect(response).to render_template(:edit)
+        end
+      end
+      context "when concert id is not exists" do
+        before do
+          get :edit, id: 100
+        end
+        it "redirect the index template." do
+          expect(response).to redirect_to(concerts_index_path)
+        end
+        it "has a flash[:danger]." do
+          expect(flash[:danger]).to eq("コンサート情報が存在しません。")
+        end  
+      end
+    end
+
+    context "when you are not signed in" do
+      before do
+        get :edit, id: concert.id
+      end
+      it "has a 302 status code." do
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
