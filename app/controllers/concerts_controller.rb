@@ -16,7 +16,7 @@ class ConcertsController < ApplicationController
         if Concert.exists?(id: params[:id])
             @title    = 'コンサート修正'
             @url      = concerts_update_path
-            @concert  = Concert.where("id = ?", params[:id]).first
+            @concert  = Concert.find(params[:id])
         else
             redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
         end
@@ -25,7 +25,7 @@ class ConcertsController < ApplicationController
     def show
         if Concert.exists?(id: params[:id])
             @title    = 'コンサート詳細'
-            @concert  = Concert.where("id = ?", params[:id]).first
+            @concert  = Concert.find(params[:id])
         else
             redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
         end
@@ -42,7 +42,7 @@ class ConcertsController < ApplicationController
 
     def update
         if Concert.exists?(id: params[:id])
-            @concert = Concert.where("id = ?", params[:id]).first
+            @concert = Concert.find(params[:id])
             if @concert.update_attributes(concert_params)
                 redirect_to concerts_index_path, flash: { success: 'コンサート情報が更新されました。' }
             else
