@@ -135,4 +135,69 @@ RSpec.describe ConcertsController, type: :controller do
       end
     end
   end
+
+  describe "POST create" do
+    def do_create_success
+      post :create, 
+        concert: {
+          title: "テストコンサート", 
+          open_at: Time.now,
+          start_at: Time.now,
+          place: "テストライブハウス",
+          note: "[ゲスト]¥r¥n・アーティスト１¥r¥n・アーティスト２",
+          active: true  
+        }
+    end
+    def do_create_fail
+      post :create, 
+        concert: {
+          title: nil, 
+          open_at: Time.now,
+          start_at: Time.now,
+          place: "テストライブハウス",
+          note: "[ゲスト]¥r¥n・アーティスト１¥r¥n・アーティスト２",
+          active: true  
+        }
+    end
+
+    context "when you are signed in" do
+      before do
+        sign_in admin
+      end
+      context "when there is no error" do
+        it "should increment the concert count" do
+          expect do
+            do_create_success
+          end.to change(Concert, :count).by(1)
+        end
+        it "redirect the index template." do
+          do_create_success
+          expect(response).to redirect_to(concerts_index_path)
+        end
+        it "has a flash[:success]." do
+          do_create_success
+          expect(flash[:success]).to eq("コンサート情報が登録されました。")
+        end
+      end
+      context "when there are some errors" do
+        it "should increment the concert count" do
+          expect do
+            do_create_fail
+          end.to change(Concert, :count).by(0)
+        end
+        it "render the new template." do
+          do_create_fail
+          expect(response).to render_template(:new)
+        end
+      end
+    end
+    context "when you are not signed in" do
+      before do
+        do_create_success
+      end
+      it "has a 302 status code." do
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
