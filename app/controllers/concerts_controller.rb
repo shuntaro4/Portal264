@@ -54,7 +54,8 @@ class ConcertsController < ApplicationController
     end
 
     def destroy
-        if Concert.delete(params[:id])
+        if Concert.exists?(id: params[:id])
+            Concert.delete(params[:id])
             redirect_to concerts_index_path, flash: { success: 'コンサート情報が削除されました。' }
         else
             redirect_to concerts_index_path, flash: { danger: "コンサート情報が存在しません。" }
