@@ -200,4 +200,73 @@ RSpec.describe ConcertsController, type: :controller do
       end
     end
   end
+
+  describe "POST edit" do
+    def do_update_success
+      post :update, 
+        id: concert.id,
+        concert: {
+          title: "テストコンサート", 
+          open_at: Time.now,
+          start_at: Time.now,
+          place: "テストライブハウス",
+          note: "[ゲスト]¥r¥n・アーティスト１¥r¥n・アーティスト２",
+          active: true  
+        }
+    end
+    def do_update_fail
+      post :update, 
+        id: concert.id,
+        concert: {
+          title: nil, 
+          open_at: Time.now,
+          start_at: Time.now,
+          place: "テストライブハウス",
+          note: "[ゲスト]¥r¥n・アーティスト１¥r¥n・アーティスト２",
+          active: true  
+        }
+    end
+    context "when you are signed in" do
+      before do
+        sign_in admin
+      end
+      context "when concert id is exists" do
+        context "when there is no error" do
+          it "redirect the index template." do
+            do_update_success
+            expect(response).to redirect_to(concerts_index_path)
+          end
+          it "has a flash[:success]." do
+            do_update_success
+            expect(flash[:success]).to eq("コンサート情報が更新されました。")
+          end
+        end
+        context "when there are some errors" do
+          it "render the edit template." do
+            do_update_fail
+            expect(response).to render_template(:edit)
+          end
+        end  
+      end
+      context "when concert id is not exists" do
+        before do
+          post :update, id: 100
+        end
+        it "redirect the index template." do
+          expect(response).to redirect_to(concerts_index_path)
+        end
+        it "has a flash[:danger]." do
+          expect(flash[:danger]).to eq("コンサート情報が存在しません。")
+        end
+      end
+    end
+    context "when you are not signed in" do
+      before do
+        do_update_success
+      end
+      it "has a 302 status code." do
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
