@@ -21,7 +21,7 @@ class ReservationsController < ApplicationController
             @url          = reservations_update_path(concert_id: params[:concert_id])
             @reservation  = Reservation.where("id = ?", params[:id]).first
         else
-            redirect_to concert_index_path, flash: { danger: "予約情報がありません。" }
+            redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { danger: "予約情報がありません。" }
         end
     end
 
