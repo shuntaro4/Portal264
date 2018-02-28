@@ -63,7 +63,6 @@ GEM
       railties (>= 3.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    grease (0.3.1)
     hike (1.2.3)
     hirb (0.7.3)
     hirb-unicode (0.0.5)
@@ -81,9 +80,8 @@ GEM
     json (1.8.6)
     less (2.6.0)
       commonjs (~> 0.2.7)
-    less-rails (3.0.0)
+    less-rails (2.8.0)
       actionpack (>= 4.0)
-      grease
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
@@ -207,7 +205,7 @@ DEPENDENCIES
   hirb-unicode
   jbuilder (~> 2.0)
   jquery-rails
-  less-rails
+  less-rails (~> 2.8.0)
   pg (= 0.15.1)
   rails (= 4.2.1)
   rails_12factor (= 0.0.2)
