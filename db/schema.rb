@@ -14,31 +14,31 @@
 ActiveRecord::Schema.define(version: 20150728152527) do
 
   create_table "admins", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "email",           limit: 255
-    t.string   "password_digest", limit: 255
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_token",  limit: 255
+    t.string   "remember_token"
   end
 
   add_index "admins", ["remember_token"], name: "index_admins_on_remember_token"
 
   create_table "concerts", force: :cascade do |t|
-    t.string   "title",      limit: 255
+    t.string   "title"
     t.datetime "open_at"
     t.datetime "start_at"
-    t.string   "place",      limit: 255
+    t.string   "place"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                 default: true, null: false
+    t.boolean  "active",     default: true, null: false
   end
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "concert_id"
-    t.string   "name",       limit: 255
-    t.string   "mail",       limit: 255
+    t.string   "name"
+    t.string   "mail"
     t.integer  "ticket"
     t.datetime "created_at"
     t.datetime "updated_at"
