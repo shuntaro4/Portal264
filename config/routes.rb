@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     delete "concerts/:id",                               to: "concerts#destroy",     as: "concerts_destroy"
     get    "concerts/:concert_id/reservations",          to: "reservations#index",   as: "reservations_index"
     get    "concerts/:concert_id/reservations/new",      to: "reservations#new",     as: "reservations_new"
-    get    "concerts/:concert_id/reservations/:id",      to: "reservations#show",    as: "reservations_show"
     get    "concerts/:concert_id/reservations/:id/edit", to: "reservations#edit",    as: "reservations_edit"
     post   "concerts/:concert_id/reservations/new",      to: "reservations#create",  as: "reservations_create"
     patch  "concerts/:concert_id/reservations/:id/edit", to: "reservations#update",  as: "reservations_update"

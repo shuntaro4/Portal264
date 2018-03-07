@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-    before_action :signed_in_admin, only: [:index, :edit, :show, :update, :destroy]
+    before_action :signed_in_admin, only: [:index, :edit, :update, :destroy]
 
     def index
         @title        = "予約一覧"
@@ -23,10 +23,6 @@ class ReservationsController < ApplicationController
         else
             redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { danger: "予約情報がありません。" }
         end
-    end
-
-    def show
-        redirect_to concert_index_path
     end
 
     def create
