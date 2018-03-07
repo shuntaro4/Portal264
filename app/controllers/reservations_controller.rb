@@ -31,7 +31,7 @@ class ReservationsController < ApplicationController
         @reservation  = Reservation.new(reservation_params)
         if @reservation.save
             # mail 送信
-            ConfirmMailer.confirm_mail(@reservation).deliver
+            ConfirmMailer.confirm_mail(@reservation).deliver_later
             redirect_to concerts_index_path, flash: { success: '予約情報が登録されました。' }
         else
             render :new
