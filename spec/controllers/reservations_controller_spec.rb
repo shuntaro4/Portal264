@@ -167,4 +167,82 @@ RSpec.describe ReservationsController, type: :controller do
       end
     end
   end
+
+  describe "POST update" do
+    def do_update_success
+      post :update,
+        concert_id: concert.id,
+        id: reservation.id,
+        reservation: {
+          concert_id: concert.id,
+          name: "テスト 太郎",
+          mail: "portal264.test@gmail.com",
+          ticket: 1
+        }
+    end
+    def do_update_fail
+      post :update,
+        concert_id: concert.id,
+        id: reservation.id,
+        reservation: {
+          concert_id: concert.id,
+          name: nil,
+          mail: nil,
+          ticket: nil
+        }
+    end
+
+    context "when you are signed in" do
+      before do
+        sign_in admin
+      end
+      context "when reservation id is exists" do
+        it "assigns @title." do
+          do_update_success
+          expect(assigns(:title)).to eq("予約修正")
+        end
+        it "assigns @url." do
+          do_update_success
+          expect(assigns(:url)).to eq(reservations_update_path(concert_id: concert.id))
+        end
+        context "when there is no error" do
+          it "redirect the index template." do
+            do_update_success
+            expect(response).to redirect_to(reservations_index_path(concert_id: concert.id))
+          end
+          it "has a flash[:success]." do
+            do_update_success
+            expect(flash[:success]).to eq("予約情報が更新されました。")
+          end
+        end
+        context "when there are some errors" do
+          it "render the edit template." do
+            do_update_fail
+            expect(response).to render_template(:edit)
+          end
+        end  
+      end
+      context "when reservation id is not exists" do
+        before do
+          post :update,
+            concert_id: concert.id,
+            id: 100
+        end
+        it "redirect the concerts index template." do
+          expect(response).to redirect_to(concerts_index_path)
+        end
+        it "has a flash[:danger]." do
+          expect(flash[:danger]).to eq("予約情報がありません。")
+        end
+      end
+    end
+    context "when you are not signed in" do
+      before do
+        do_update_success
+      end
+      it "has a 302 status code." do
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
