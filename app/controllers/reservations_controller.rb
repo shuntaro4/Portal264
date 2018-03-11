@@ -49,7 +49,7 @@ class ReservationsController < ApplicationController
                 render :edit
             end
         else
-            redirect_to concert_index_path, flash: { danger: "予約情報がありません。" }
+            redirect_to concerts_index_path, flash: { danger: "予約情報がありません。" }
         end
     end
 
