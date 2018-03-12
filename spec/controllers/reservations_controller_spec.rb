@@ -245,4 +245,42 @@ RSpec.describe ReservationsController, type: :controller do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    context "when you are signed in" do
+      before do
+        sign_in admin
+      end
+      context "when reservation id is exists" do
+        before do
+          delete :destroy, concert_id: concert.id, id: reservation.id
+        end
+        it "redirect the index template." do
+          expect(response).to redirect_to(reservations_index_path(concert_id: concert.id))
+        end
+        it "has a flash[:success]." do
+          expect(flash[:success]).to eq("予約情報が削除されました。")
+        end
+      end
+      context "when reservation id is not exists" do
+        before do
+          delete :destroy, concert_id: concert.id, id: 100
+        end
+        it "redirect the index template." do
+          expect(response).to redirect_to(reservations_index_path(concert_id: concert.id))
+        end
+        it "has a flash[:danger]." do
+          expect(flash[:danger]).to eq("予約情報が存在しません。")
+        end
+      end
+    end
+    context "when you are not signed in" do
+      before do
+        delete :destroy, concert_id: concert.id, id: reservation.id
+      end
+      it "has a 302 status code." do
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
