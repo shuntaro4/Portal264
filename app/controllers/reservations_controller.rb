@@ -54,10 +54,11 @@ class ReservationsController < ApplicationController
     end
 
     def destroy
-        if Reservation.delete(params[:id])
-            redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { success: '予約情報が削除されました。' }
+        if Reservation.exists?(id: params[:id])
+            Reservation.delete(params[:id])
+            redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { success: '予約情報が削除されました。' }    
         else
-            render :destroy
+            redirect_to reservations_index_path(concert_id: params[:concert_id]), flash: { danger: '予約情報が存在しません。' }
         end
     end
 
