@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
     def create
         user = Admin.find_by(email: params[:session][:email].downcase)
         if user && user.authenticate(params[:session][:password])
+            cookies[:remember_tokena] = 'ok'
             sign_in user
             redirect_to root_path
         else
-            flash.now[:error] = "Invalid email/password combination"
+            flash.now[:danger] = "Invalid email/password combination"
             render "new"
         end
     end
