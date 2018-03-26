@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
   let(:admin) { FactoryBot.create(:admin) }
+  delegate :sign_in, to: 'controller.view_context'
+  delegate :current_user, to: 'controller.view_context'
 
   describe "GET new" do
     before do
@@ -63,6 +65,23 @@ RSpec.describe SessionsController, type: :controller do
       it "render the new template." do
         expect(response).to render_template(:new)
       end
+    end
+  end
+
+  describe "DELETE destroy" do
+    before do
+      sign_in admin
+      delete :destroy
+    end
+    it "current_user is nil." do
+      expect(current_user).to eq(nil)
+    end
+    it "cookies.remember_token is nil." do
+      expect(response.cookies.has_key?("remember_token")).to be true
+      expect(response.cookies["remember_token"]).to eq(nil)
+    end
+    it "redirect root path." do
+      expect(response).to redirect_to(root_path)
     end
   end
 end
