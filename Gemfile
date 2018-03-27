@@ -1,25 +1,25 @@
 source 'https://rubygems.org'
-#ruby '2.1.1'
+ruby '2.3.3'
 
-gem 'rails', '4.2.1'
-gem 'sass-rails', '~> 4.0.3'
-gem 'less-rails', '~>2.8.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'rails', '5.1.5'
+gem 'sass-rails'
+gem 'less-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
-gem 'turbolinks', '2.2.3'
-gem 'jbuilder', '~> 2.0'
-gem 'twitter-bootstrap-rails', '~> 2.2.8'
-gem 'bcrypt-ruby', '3.1.2'
-gem 'seed-fu', '~> 2.3'
+gem 'turbolinks'
+gem 'jbuilder'
+gem 'twitter-bootstrap-rails'
+gem 'bcrypt-ruby'
+gem 'seed-fu'
 
 group :doc do
-  gem 'sdoc', '~> 0.4.0'
+  gem 'sdoc'
 end
 
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.10'
+  gem 'sqlite3'
   gem 'spring'
   gem 'hirb'
   gem 'hirb-unicode'
@@ -29,6 +29,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg', '0.15.1'
-  gem 'rails_12factor', '0.0.2'
+  gem 'pg'
+  gem 'rails_12factor'
 end
