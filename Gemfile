@@ -3,7 +3,7 @@ ruby '2.3.3'
 
 gem 'rails', '5.1.5'
 gem 'sass-rails'
-gem 'less-rails'
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'therubyracer',  platforms: :ruby
