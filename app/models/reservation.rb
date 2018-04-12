@@ -1,4 +1,4 @@
-class Reservation < ActiveRecord::Base
+class Reservation < ApplicationRecord
     belongs_to :concert
 
     validates :concert,

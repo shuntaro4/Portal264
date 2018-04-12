@@ -1,4 +1,4 @@
-class Admin < ActiveRecord::Base
+class Admin < ApplicationRecord
     before_save { self.email = email.downcase }
     before_create :create_remember_token
 
