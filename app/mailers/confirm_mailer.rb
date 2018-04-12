@@ -1,4 +1,4 @@
-class ConfirmMailer < ActionMailer::Base
+class ConfirmMailer < ApplicationMailer
   default from: ENV['MAIL_ADDRESS']
 
   def confirm_mail(reservation)
