@@ -51,3 +51,5 @@ end
 group :production do
   gem 'pg', '1.0.0'
 end
+
+gem 'haml-rails'
