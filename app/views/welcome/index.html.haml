@@ -1,2 +1,28 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.haml
+%section#about.resume-section.p-3.p-lg-5.d-flex.flex-column
+  .my-auto
+    %h1.mb-0
+      A cappella Group 
+      %span.text-primary 264
+    .subheading.mb-5
+      A Cappella Group no 264(tsu-mu-ji) desu. otona no warufuzake, mitsumeyou. 264 to issho ni paradise!!!!!
+
+    %span.d-block.d-lg-none
+      = image_tag 'profile.jpg', alt: '', height: '', width: '', class: 'img-fluid img-profile rounded-circle mx-auto mb-2'
+    %br
+
+    %ul.list-inline.list-social-icons.mb-0
+      %li.list-inline-item
+        %a{:href => "https://www.facebook.com/acappella.264", target: "_blank"}
+          %span.fa-stack.fa-lg
+            %i.fa.fa-circle.fa-stack-2x
+            %i.fa.fa-facebook.fa-stack-1x.fa-inverse
+      %li.list-inline-item
+        %a{:href => "https://twitter.com/264acappella", target: "_blank"}
+          %span.fa-stack.fa-lg
+            %i.fa.fa-circle.fa-stack-2x
+            %i.fa.fa-twitter.fa-stack-1x.fa-inverse
+      %li.list-inline-item
+        %a{:href => "https://www.youtube.com/channel/UCASYHw_S6bt_7bUhyWWu61Q", target: "_blank"}
+          %span.fa-stack.fa-lg
+            %i.fa.fa-circle.fa-stack-2x
+            %i.fa.fa-youtube.fa-stack-1x.fa-inverse
