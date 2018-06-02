@@ -1,0 +1,11 @@
+%section#login.resume-section.p-3.p-lg-5.d-flex.flex-column
+  %h2 Log in
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .form-group
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+    .form-group
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: "form-control"
+    .actions
+      = f.submit "Log in", :class => "btn btn-secondary"

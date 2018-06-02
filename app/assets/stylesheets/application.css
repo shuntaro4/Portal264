@@ -13,6 +13,7 @@
  *= require bootstrap/bootstrap.css
  *= require font-awesome
  *= require resume/resume.css
+ *= require animate/animate.css
  *= require_tree .
  *= require_self
  */

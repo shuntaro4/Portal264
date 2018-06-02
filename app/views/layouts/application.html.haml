@@ -29,7 +29,29 @@
               %a.nav-link.js-scroll-trigger{:href => "#live"} Live
             %li.nav-item
               %a.nav-link.js-scroll-trigger{:href => "#sns"} SNS
-    .container-fluid.p-0
-      = yield
+            %li.nav-item
+              %a.nav-link
+            %li.nav-item
+              %a.nav-link
+            - if user_signed_in?
+              %li.nav-item
+                = link_to('Logout', destroy_user_session_path, method: :delete, :class => "nav-link js-scroll-trigger", id: "nav-login")
+            - else
+              %li.nav-item
+                = link_to('Login', new_user_session_path, :class => "nav-link js-scroll-trigger", id: "nav-login")
+      .container-fluid.p-0
+        = yield
 
-      = javascript_include_tag 'application'
+        = javascript_include_tag 'application'
+      :javascript
+        if ($("#login").length === 1) {
+          $("#nav-login").addClass("active");
+        }
+
+      - if !alert.nil?
+        :javascript
+          notifyDanger(#{raw alert.to_json});
+
+      - if !notice.nil?
+        :javascript
+          notifyInfo(#{raw notice.to_json});
