@@ -1,24 +1,8 @@
-# README
+# Portal264
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is the portal site for 264 fans and members.
 
-Things you may want to cover:
+You can find 264's imformation (updating SNS and concert info etc..), and reserve concert ticket.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Currently, this site is published on Heroku.
+URL is "[http://portal264.herokuapp.com/](http://portal264.herokuapp.com/)".
