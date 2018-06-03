@@ -13,6 +13,8 @@
     %link{:href => "https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900", :rel => "stylesheet"}/
     %link{:href => "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i", :rel => "stylesheet"}/
 
+    = javascript_include_tag 'application'
+
     %body#page-top
       %nav#sideNav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
         %a.navbar-brand.js-scroll-trigger{:href => "#page-top"}
@@ -24,29 +26,19 @@
         #navbarSupportedContent.collapse.navbar-collapse
           %ul.navbar-nav
             %li.nav-item
-              %a.nav-link.js-scroll-trigger{:href => "#about"} About
+              = link_to('About', root_path, :class => "nav-link js-scroll-trigger")
             %li.nav-item
-              %a.nav-link.js-scroll-trigger{:href => "#live"} Live
+              = link_to('Live', concerts_path, :class => "nav-link js-scroll-trigger")
             %li.nav-item
               %a.nav-link.js-scroll-trigger{:href => "#sns"} SNS
-            %li.nav-item
-              %a.nav-link
-            %li.nav-item
-              %a.nav-link
             - if user_signed_in?
               %li.nav-item
                 = link_to('Logout', destroy_user_session_path, method: :delete, :class => "nav-link js-scroll-trigger", id: "nav-login")
             - else
               %li.nav-item
-                = link_to('Login', new_user_session_path, :class => "nav-link js-scroll-trigger", id: "nav-login")
+                = link_to('Login', new_user_session_path, :class => "nav-link", id: "nav-login")
       .container-fluid.p-0
         = yield
-
-        = javascript_include_tag 'application'
-      :javascript
-        if ($("#login").length === 1) {
-          $("#nav-login").addClass("active");
-        }
 
       - if !alert.nil?
         :javascript

@@ -1,0 +1,33 @@
+= form_for @concert do |f|
+  - if @concert.errors.any?
+    - @concert.errors.full_messages.each do |message|
+      :javascript
+        notifyDanger(#{raw message.to_json});
+
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :open_at
+    %br
+    = f.datetime_select :open_at, class: "form-control", :use_month_numbers => true, :include_blank => true, :minute_step => 5
+  .form-group
+    = f.label :start_at
+    %br
+    = f.datetime_select :start_at, class: "form-control", :use_month_numbers => true, :include_blank => true, :minute_step => 5
+  .form-group
+    = f.label :place
+    = f.text_field :place, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :note
+    = f.text_area :note, class: "form-control", rows: "10"
+  .form-group
+    = f.label :active
+    = f.check_box :active, class: "form-control"
+  %br
+  .actions
+    = f.submit 'Save', class: "btn btn-success"
+    = link_to 'Back', concerts_path, class: "btn btn-secondary"

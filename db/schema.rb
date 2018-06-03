@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_02_091240) do
+ActiveRecord::Schema.define(version: 2018_06_03_002335) do
+
+  create_table "concerts", force: :cascade do |t|
+    t.string "title"
+    t.datetime "open_at"
+    t.datetime "start_at"
+    t.string "place"
+    t.string "address"
+    t.text "note"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

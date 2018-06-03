@@ -1,0 +1,22 @@
+%section.resume-section.p-3.p-lg-5.d-flex.flex-column
+  %h2 Show
+  %h3 Title
+  .detail.mb-3= @concert.title
+
+  %h3 Open
+  .detail.mb-3= @concert.open_at
+
+  %h3 Start
+  .detail.mb-3= @concert.start_at
+
+  %h3 Place
+  .detail.mb-3= @concert.place
+
+  %h3 Address
+  .detail.mb-3= @concert.address
+
+  %h3 Note
+  .detail.mb-3= @concert.note.gsub(/\R/, "<br>").html_safe
+
+  .actions
+    = link_to 'Back', concerts_path, class: "btn btn-secondary"
