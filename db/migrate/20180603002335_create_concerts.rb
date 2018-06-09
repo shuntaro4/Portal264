@@ -6,6 +6,8 @@ class CreateConcerts < ActiveRecord::Migration[5.2]
       t.datetime :start_at
       t.string :place
       t.string :address
+      t.float :latitude
+      t.float :longitude
       t.text :note
       t.boolean :active
 

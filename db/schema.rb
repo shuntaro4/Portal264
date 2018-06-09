@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_06_03_002335) do
     t.datetime "start_at"
     t.string "place"
     t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.text "note"
     t.boolean "active"
     t.datetime "created_at", null: false

@@ -1,22 +1,45 @@
+:coffee
+  @initMap = ->
+    geo = 
+      lat: parseFloat "#{@concert.latitude}"
+      lng: parseFloat "#{@concert.longitude}"
+    map = new (google.maps.Map)($("#map")[0],
+      zoom: 15
+      center: geo)
+    transitLayer = new (google.maps.TransitLayer)
+    transitLayer.setMap map
+    marker = new (google.maps.Marker)(
+      position: geo
+      map: map)
+    return
+
 %section.resume-section.p-3.p-lg-5.d-flex.flex-column
   %h2 Show
   %h3 Title
   .detail.mb-3= @concert.title
 
-  %h3 Open
-  .detail.mb-3= @concert.open_at
-
-  %h3 Start
-  .detail.mb-3= @concert.start_at
+  %h3 Date
+  .detail.mb-3
+    = @concert.open_at.strftime("%Y-%m-%d (%a)")
+    = " / Open:"
+    = @concert.open_at.strftime("%H:%M -")
+    = " / Start:"
+    = @concert.start_at.strftime("%H:%M -")
 
   %h3 Place
-  .detail.mb-3= @concert.place
+  .detail.mb-3
+    = @concert.place
+    = " / "
+    = @concert.address
 
-  %h3 Address
-  .detail.mb-3= @concert.address
+  .detail.mb-3
+    #map
 
   %h3 Note
   .detail.mb-3= @concert.note.gsub(/\R/, "<br>").html_safe
 
   .actions
     = link_to 'Back', concerts_path, class: "btn btn-secondary"
+
+%script{ src: "https://maps.googleapis.com/maps/api/js?key=#{ENV["GOOGLE_MAPS_API_KEY"]}&callback=initMap", async: "", defer: ""}
+
