@@ -1,0 +1,28 @@
+%section.resume-section.p-3.p-lg-5.d-flex.flex-column
+  %h2 Index
+  %h3
+    = @concert.title
+
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Mail
+        %th Ticket
+        %th
+
+    %tbody
+      - @reservations.each do |reservation|
+        %tr
+          %td= reservation.name
+          %td= reservation.mail
+          %td= reservation.ticket
+          %td
+            .btn-group
+              = link_to edit_concert_reservation_path(concert_id: reservation.concert.id, id: reservation.id), class: "btn btn-xs btn-outline-secondary" do
+                %i.fa.fa-edit
+              = link_to concert_reservation_path(concert_id: reservation.concert.id, id: reservation.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-outline-danger" do
+                %i.fa.fa-trash
+
+  .actions
+    = link_to 'Back', concerts_path, class: "btn btn-secondary"

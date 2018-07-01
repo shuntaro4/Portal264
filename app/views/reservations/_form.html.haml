@@ -1,0 +1,22 @@
+= form_for [@concert, @reservation] do |f|
+  - if @reservation.errors.any?
+    - @reservation.errors.full_messages.each do |message|
+      :javascript
+        notifyDanger(#{raw message.to_json});
+
+  %h3
+    = @reservation.concert.title
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :mail
+    = f.text_field :mail, class: "form-control"
+  .form-group
+    = f.label :ticket
+    = f.number_field :ticket, class: "form-control"
+  %br
+  .actions
+    = f.submit 'Save', class: "btn btn-success"
+    = link_to 'Back', concerts_path, class: "btn btn-secondary"

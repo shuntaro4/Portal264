@@ -28,6 +28,12 @@
                   %i.fa.fa-edit
                 = link_to concert, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-outline-danger" do
                   %i.fa.fa-trash
+                = link_to concert_reservations_path(concert), class: "btn btn-xs btn-outline-secondary" do
+                  %i.fa.fa-list
+              - if concert.active?
+                = link_to new_concert_reservation_path(concert), class: "btn btn-xs btn-outline-secondary" do
+                  %i.fa.fa-calendar
+                  Reservation
 
   %br
 
