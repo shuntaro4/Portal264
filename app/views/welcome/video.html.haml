@@ -1,0 +1,14 @@
+%section.resume-section.p-3.p-lg-5.d-flex.flex-column
+  %h2 Video
+
+  - @videos.each_slice(1) do |g|
+    - g.each do |v|
+      .col-md-12
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start
+            .mb-1.text-muted
+              = v.content_details.video_published_at.strftime("%Y-%m-%d (%a)")
+            %h4.mb-1.nowrap-ellipsis
+              = v.snippet.title
+          %a{class: "youtube", href: "https://www.youtube.com/watch?v=#{v.content_details.video_id}", target: "empty"}
+            %img{width: "320", height: "180", src: "https://img.youtube.com/vi/#{v.content_details.video_id}/mqdefault.jpg", class: "card-img-right flex-auto d-lg-block", alt: ""}

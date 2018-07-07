@@ -1,0 +1,26 @@
+%section.resume-section.p-3.p-lg-5.d-flex.flex-column
+  %h2 News
+
+  - if @concerts.count == 0
+    .subheading.mb-5 
+      最新情報がありません。
+  - else
+    - @concerts.each do |c|
+      .col-md-12
+        .card.flex-md-row.mb-4.box-shadow.h-md-250
+          .card-body.d-flex.flex-column.align-items-start
+            %string.d-inline-block.mb-2.text-primary
+              Live Info
+            .mb-1.text-muted
+              = c.created_at.strftime("%Y-%m-%d")
+            %h3.mb-0
+              = link_to c, class: "text-dark" do
+                [
+                = c.start_at.strftime("%Y-%m-%d (%a)")
+                ]
+                = c.title
+            %p.card-text.mb-auto
+              ライブ情報が追加されました。
+              チケットのご予約は
+              = link_to 'こちら', new_concert_reservation_path(c)
+              。

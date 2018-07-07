@@ -9,3 +9,31 @@ hr.separator {
 #map {
     height: 300px;
 }
+
+.youtube {
+    display: inline-block;
+    position: relative;
+    width: 320px;
+    height: 180px;
+}
+.youtube::before {
+    position: absolute;
+    content: "Click to Play";
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 180px;
+    background: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    transition: all 0.3s;
+}
+.youtube:hover::before {
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+    transition: all 0.3s;
+}
