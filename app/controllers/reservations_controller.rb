@@ -30,6 +30,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
+        NotificationMailer.send_confirm_to_user(@reservation).deliver_later
         format.html { redirect_to concerts_url, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
