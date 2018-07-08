@@ -8,6 +8,7 @@
     %title Portal264
     = csrf_meta_tags
     = csp_meta_tag
+    = favicon_link_tag 'favicon.ico'
     = analytics_init if Rails.env.production?
 
     = stylesheet_link_tag    'application', media: 'all'
