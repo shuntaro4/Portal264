@@ -1,41 +1,38 @@
 %section.resume-section.p-3.p-lg-5.d-flex.flex-column
-  %h2 Index
-  %table.table.table-hover
-    %thead
-      %tr
-        %th Date
-        %th Title
-        %th Open
-        %th Start
-        %th Place
-        %th
+  %h2 Live
 
-    %tbody
-      - @concerts.each do |concert|
-        %tr
-          %td= concert.start_at.strftime("%Y-%m-%d")
-          %td= concert.title
-          %td= concert.open_at.strftime("%H:%M -")
-          %td= concert.start_at.strftime("%H:%M -")
-          %td= concert.place
-          %td
+  - if @concerts.count == 0
+    .subheading.mb-5
+      ライブ情報がありません。
+  - else
+    - @concerts.each do |c|
+      .card.mb-3
+        .card-body
+          %string.d-inline-block.mb-2.text-primary
+            = c.start_at.strftime("%Y-%m-%d (%a)")
+          %h3.mb-0
+            = link_to c, class: "text-dark" do
+              = c.title
+          %p.card-text
+            = c.place
+            = " / "
+            = c.open_at.strftime("%H:%M") + " OPEN"
+            = " / "
+            = c.start_at.strftime("%H:%M") + " START"
+
+          .mb-0
             .btn-group
-              = link_to concert, class: "btn btn-xs btn-outline-secondary" do
-                %i.fa.fa-info-circle
-                Detail
-              - if signed_in?
-                = link_to edit_concert_path(concert), class: "btn btn-xs btn-outline-secondary" do
-                  %i.fa.fa-edit
-                = link_to concert, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-outline-danger" do
-                  %i.fa.fa-trash
-                = link_to concert_reservations_path(concert), class: "btn btn-xs btn-outline-secondary" do
-                  %i.fa.fa-list
-              - if concert.active?
-                = link_to new_concert_reservation_path(concert), class: "btn btn-xs btn-outline-secondary" do
+              - if c.active?
+                = link_to new_concert_reservation_path(c), class: "btn btn-xs btn-outline-secondary" do
                   %i.fa.fa-calendar
-                  Reservation
-
-  %br
+                  予約はこちら
+              - if signed_in?
+                = link_to edit_concert_path(c), class: "btn btn-xs btn-outline-secondary" do
+                  %i.fa.fa-edit
+                = link_to c, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-outline-danger" do
+                  %i.fa.fa-trash
+                = link_to concert_reservations_path(c), class: "btn btn-xs btn-outline-secondary" do
+                  %i.fa.fa-list
 
   - if signed_in?
     .actions

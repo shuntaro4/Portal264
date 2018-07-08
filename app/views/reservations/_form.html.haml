@@ -5,18 +5,19 @@
         notifyDanger(#{raw message.to_json});
 
   %h3
+    = "Live名："
     = @reservation.concert.title
 
   .form-group
-    = f.label :name
+    = f.label :name, "お名前"
     = f.text_field :name, class: "form-control"
   .form-group
-    = f.label :mail
+    = f.label :mail, "メールアドレス"
     = f.text_field :mail, class: "form-control"
   .form-group
-    = f.label :ticket
+    = f.label :ticket, "予約枚数"
     = f.number_field :ticket, class: "form-control"
   %br
   .actions
-    = f.submit 'Save', class: "btn btn-success"
-    = link_to 'Back', concerts_path, class: "btn btn-secondary"
+    = f.submit '確定', class: "btn btn-success"
+    = link_to '戻る', concerts_path, class: "btn btn-secondary"

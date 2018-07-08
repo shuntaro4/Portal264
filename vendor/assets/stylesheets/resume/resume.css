@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', serif;
+  font-family: 'Open Sans', "游ゴシック Medium", "Yu Gothic", YuGothic, YuGothicMedium, "Hiragino Kaku Gothic ProN", Meiryo, serif;
   padding-top: 54px;
   color: #868e96;
 }
@@ -17,7 +17,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Saira Extra Condensed', serif;
+  font-family: 'Saira Extra Condensed', "游ゴシック Medium", "Yu Gothic", YuGothic, YuGothicMedium, "Hiragino Kaku Gothic ProN", Meiryo,serif;
   font-weight: 700;
   text-transform: uppercase;
   color: #343a40;
@@ -35,14 +35,14 @@ h2 {
 .subheading {
   text-transform: uppercase;
   font-weight: 500;
-  font-family: 'Saira Extra Condensed', serif;
+  font-family: 'Saira Extra Condensed',"游ゴシック Medium", "Yu Gothic", YuGothic, YuGothicMedium, "Hiragino Kaku Gothic ProN", Meiryo, serif;
   font-size: 1.35rem;
 }
 
 .detail {
   text-transform: uppercase;
   font-weight: 500;
-  font-family: 'Saira Extra Condensed', serif;
+  font-family: 'Saira Extra Condensed',"游ゴシック Medium", "Yu Gothic", YuGothic, YuGothicMedium, "Hiragino Kaku Gothic ProN", Meiryo, serif;
   font-size: 1.35rem;
   color: #868e96;
   border: thin solid;
