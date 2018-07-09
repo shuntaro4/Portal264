@@ -21,10 +21,10 @@
   %h4 日程
   .detail.mb-3
     = @concert.open_at.strftime("%Y-%m-%d (%a)")
-    = " / Open:"
-    = @concert.open_at.strftime("%H:%M -")
-    = " / Start:"
-    = @concert.start_at.strftime("%H:%M -")
+    = " / "
+    = @concert.open_at.strftime("%H:%M") + " OPEN"
+    = " / "
+    = @concert.start_at.strftime("%H:%M") + " START"
 
   %h4 場所
   .detail.mb-3
